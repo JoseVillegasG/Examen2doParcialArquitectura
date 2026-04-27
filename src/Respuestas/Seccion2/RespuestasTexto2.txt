@@ -1,0 +1,34 @@
+A:
+El rector exige que exista un único registro de auditoría en todo el sistema. Implementa la clase AuditoriaLogger usando el patrón Singleton. Tu solución debe:
+
+Hacer imposible crear más de una instancia. Explica qué tuviste que hacer con el constructor y por qué.
+Exponer el método registrar(evento: String, usuario: String).
+Incluir el diagrama de clases UML resultante.
+Reflexión: ¿qué problema concreto de este sistema resuelve tener una sola instancia? ¿Qué pasaría si hubiera dos instancias simultáneas?
+
+B:
+El sistema debe crear objetos de tipo Usuario (Estudiante, Bibliotecario, Admin) sin que el código cliente conozca las clases concretas. Implementa una FabricaDeUsuarios y:
+
+Define la interfaz Usuario con métodos comunes.
+Implementa las tres clases concretas.
+Dibuja el diagrama de clases UML con la fábrica y las implementaciones.
+Muestra cómo agregar el tipo Posgrado en el futuro sin modificar el código existente. ¿Qué principio SOLID garantiza esto?
+
+C:
+El sistema interno espera una interfaz CatalogoBiblioteca con el método:
+
+buscarLibro(isbn: String): Libro
+El Catálogo CETYS expone el método:
+
+consultarObra(codigoCETYS: String, formato: String): ResultadoSOAP
+Con base en lo anterior:
+
+Crea el adaptador que permita al sistema interno usar el catálogo CETYS sin modificar ninguna de las dos clases.
+Dibuja el diagrama UML con las tres clases involucradas y sus relaciones.
+Reflexión: si mañana CETYS cambia de proveedor de catálogo a uno con una interfaz completamente diferente, ¿cuánto código habría que modificar? ¿Por qué?
+
+D:
+Implementa un SolicitudPrestamoBuilder con métodos encadenables.
+El método construir() debe validar que los campos obligatorios estén presentes antes de crear el objeto.
+Muestra tres ejemplos de uso con distintas combinaciones de atributos opcionales.
+Reflexión: ¿por qué conviene que SolicitudPrestamo sea inmutable una vez construida? ¿Qué problemas evitamos?

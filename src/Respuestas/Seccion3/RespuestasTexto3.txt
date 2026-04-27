@@ -1,0 +1,23 @@
+A:
+Se te entrega el siguiente diseño problemático. La clase GestorBiblioteca contiene los métodos:
+
+prestarLibro()
+devolverLibro()
+registrarMulta()
+enviarEmailNotificacion()
+generarReportePDF()
+autenticarUsuario()
+consultarCatalogoCETYS()
+Con base en lo anterior:
+
+Identifica qué principios SOLID viola esta clase y explica por qué en cada caso.
+Propón una refactorización: divide la clase en las entidades correctas. Dibuja el diagrama de clases resultante.
+¿Cómo se relaciona esta refactorización con la Dependency Rule de Clean Architecture?
+
+B:
+Siguiendo Clean Architecture, el caso de uso "Registrar préstamo" debe ser independiente de la base de datos y del framework web.
+
+Define la interfaz del repositorio RepositorioPrestamos y ubícala en la capa arquitectónica correcta. Justifica la ubicación.
+Implementa la clase RegistrarPrestamoUseCase que use esa interfaz (no la implementación concreta).
+Explica cómo la Dependency Rule garantiza que cambiar de MySQL a MongoDB no requiera tocar el use case.
+¿Qué patrón de los estudiados en clase aparece implícitamente en este diseño?
