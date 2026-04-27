@@ -1,0 +1,9 @@
+@startuml
+class AuditoriaSingleton.AuditoriaLogger {
+- {static} AuditoriaLogger instancia
++ {static} AuditoriaLogger getInstancia()
++ void registrar(String,String)
+}
+
+
+@enduml

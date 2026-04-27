@@ -1,0 +1,41 @@
+@startuml
+class FactoryUsuarios.Bibliotecario {
+- String nombre
++ String getNombre()
++ String getTipo()
++ void mostrarPermisos()
+}
+
+
+class FactoryUsuarios.Estudiante {
+- String nombre
++ String getNombre()
++ String getTipo()
++ void mostrarPermisos()
+}
+
+
+class FactoryUsuarios.FabricaUsuarios {
++ {static} Usuario crearUsuario(String,String)
+}
+
+interface FactoryUsuarios.Usuario {
+~ String getNombre()
+~ String getTipo()
+~ void mostrarPermisos()
+}
+
+class FactoryUsuarios.Admin {
+- String nombre
++ String getNombre()
++ String getTipo()
++ void mostrarPermisos()
+}
+
+
+
+
+FactoryUsuarios.Usuario <|.. FactoryUsuarios.Bibliotecario
+FactoryUsuarios.Usuario <|.. FactoryUsuarios.Estudiante
+FactoryUsuarios.Usuario <|.. FactoryUsuarios.Admin
+@enduml

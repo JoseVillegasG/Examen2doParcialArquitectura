@@ -1,0 +1,46 @@
+@startuml
+class BuilderPrestamo.SolicitudPrestamo {
+- Estudiante estudiante
+- Libro libro
+- Date fechaDevolucion
+- String notasEspeciales
+- boolean renovacionAutomatica
+- int numRenovaciones
++ String toString()
++ Object getLibro()
++ Object getEstudiante()
+}
+
+
+class BuilderPrestamo.SolicitudPrestamo$SolicitudPrestamoBuilder {
+- Estudiante estudiante
+- Libro libro
+- Date fechaDevolucion
+- String notasEspeciales
+- boolean renovacionAutomatica
+- int numRenovaciones
++ SolicitudPrestamoBuilder conEstudiante(Estudiante)
++ SolicitudPrestamoBuilder conLibro(Libro)
++ SolicitudPrestamoBuilder conFechaDevolucion(Date)
++ SolicitudPrestamoBuilder conNotasEspeciales(String)
++ SolicitudPrestamoBuilder conRenovacionAutomatica(boolean)
++ SolicitudPrestamoBuilder conNumRenovaciones(int)
++ SolicitudPrestamo construir()
+}
+
+
+class BuilderPrestamo.UseRepositorioPrestamos {
+- RepositorioPrestamos repositorio
++ void ejecutar(SolicitudPrestamo)
+}
+
+
+interface BuilderPrestamo.RepositorioPrestamos {
+~ void guardar(SolicitudPrestamo)
+~ boolean existePrestamoActivo(String,String)
+}
+
+
+
+BuilderPrestamo.SolicitudPrestamo +.. BuilderPrestamo.SolicitudPrestamo$SolicitudPrestamoBuilder
+@enduml

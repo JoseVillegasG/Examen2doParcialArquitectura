@@ -1,15 +1,64 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+import AdapterCatalogo.CatalogoBiblioteca;
+import AdapterCatalogo.CatalogoCetys;
+import AdapterCatalogo.CatalogoCetysAdapter;
+import AdapterCatalogo.Libro;
+import AuditoriaSingleton.AuditoriaLogger;
+import BuilderPrestamo.SolicitudPrestamo;
+import FactoryUsuarios.Estudiante;
+import FactoryUsuarios.FabricaUsuarios;
+import FactoryUsuarios.Usuario;
+
+import java.util.Date;
+
 public class Main {
     public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+        AuditoriaLogger logger1 = AuditoriaLogger.getInstancia();
+        AuditoriaLogger logger2 = AuditoriaLogger.getInstancia();
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
-        }
+        logger1.registrar("Préstamo creado", "juan123");
+        logger2.registrar("Pago realizado", "ana456");
+
+
+        System.out.println(logger1 == logger2);
+
+//2b
+        Usuario u1 = FabricaUsuarios.crearUsuario("estudiante", "Juan");
+        Usuario u2 = FabricaUsuarios.crearUsuario("bibliotecario", "Ana");
+        Usuario u3 = FabricaUsuarios.crearUsuario("admin", "Carlos");
+
+        u1.mostrarPermisos();
+        u2.mostrarPermisos();
+        u3.mostrarPermisos();
+
+//2c
+        CatalogoCetys externo = new CatalogoCetys();
+
+        CatalogoBiblioteca catalogo = new CatalogoCetysAdapter(externo);
+
+        Libro libro = catalogo.buscarLibro("111111132350884");
+
+        System.out.println(libro);
+
+        //2d
+        SolicitudPrestamo s1 = new SolicitudPrestamo.SolicitudPrestamoBuilder()
+                .conEstudiante(new Estudiante("Juan"))
+                .conLibro(new Libro("libro1"))
+                .conFechaDevolucion(new Date())
+                .construir();
+
+        SolicitudPrestamo s2 = new SolicitudPrestamo.SolicitudPrestamoBuilder()
+                .conEstudiante(new Estudiante("Ana"))
+                .conLibro(new Libro("mi lucha"))
+                .conFechaDevolucion(new Date())
+                .conNotasEspeciales("Entregar en mostrador principal")
+                .construir();
+        SolicitudPrestamo s3 = new SolicitudPrestamo.SolicitudPrestamoBuilder()
+                .conEstudiante(new Estudiante("Carlos"))
+                    //ejemplo no valido
+                .conFechaDevolucion(new Date())
+                .conRenovacionAutomatica(true)
+                .conNumRenovaciones(3)
+                .construir();
+
     }
 }

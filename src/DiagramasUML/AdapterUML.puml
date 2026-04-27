@@ -1,0 +1,36 @@
+@startuml
+class AdapterCatalogo.ResultadoSOAP {
+- String titulo
+- String autor
++ String getTitulo()
++ String getAutor()
+}
+
+
+interface AdapterCatalogo.CatalogoBiblioteca {
+~ Libro buscarLibro(String)
+}
+
+class AdapterCatalogo.CatalogoCetysAdapter {
+- CatalogoCetys catalogoExterno
++ Libro buscarLibro(String)
+- String convertirISBNaCodigo(String)
+}
+
+
+class AdapterCatalogo.Libro {
+- String titulo
+- String autor
+- String isbn
++ String toString()
+}
+
+
+class AdapterCatalogo.CatalogoCetys {
++ ResultadoSOAP consultarObra(String,String)
+}
+
+
+
+AdapterCatalogo.CatalogoBiblioteca <|.. AdapterCatalogo.CatalogoCetysAdapter
+@enduml
